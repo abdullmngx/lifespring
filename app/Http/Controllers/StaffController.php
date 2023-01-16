@@ -229,7 +229,7 @@ class StaffController extends Controller
         ]);
 
         $staff = $request->except('_token');
-        $passport = $request->file('passport')->store('public/uploads');
+        $passport = $request->file('passport')->store('uploads', 'public');
         
         $staff['passport'] = str_replace('public/', '', $passport);
         $staff['password'] = Hash::make($request->phone_number);

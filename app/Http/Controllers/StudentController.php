@@ -33,7 +33,7 @@ class StudentController extends Controller
         ]);
 
         $student = $request->except('_token');
-        $passport = $request->file('passport')->store('public/uploads');
+        $passport = $request->file('passport')->store('uploads', 'public');
 
         $student['passport'] = str_replace('public/', '', $passport);
         $student['password'] = Hash::make(0000);
@@ -89,9 +89,8 @@ class StudentController extends Controller
         $student = Student::find($request->student_id);
         if ($request->file('passport'))
         {
-            $current_passport = explode('/', $student->passport)[1];
-            Storage::delete($current_passport);
-            $passport = $request->file('passport')->store('public/uploads');
+            Storage::disk('public')->delete($student->passport);
+            $passport = $request->file('passport')->store('uploads', 'public');
             $data['passport'] = str_replace('public/', '', $passport);
         }
         Student::unguard();
