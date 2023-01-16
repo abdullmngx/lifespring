@@ -85,7 +85,7 @@
                                     <input type="hidden" name="student_id" value="{{ $student->id }}">
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <img src="{{ public_path($student->passport) }}" alt="" class="img-fluid w-50">
+                                            <img src="{{ '/'.$student->passport }}" alt="" class="img-fluid w-50">
                                         </div>
                                     </div>
                                     <div class="row">
