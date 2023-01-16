@@ -70,7 +70,7 @@ return [
     */
 
     'links' => [
-        app()->basePath('/public_html') => storage_path('app/public'),
+        app()->basePath('public_html/storage') => storage_path('app/public'),
     ],
 
 ];
