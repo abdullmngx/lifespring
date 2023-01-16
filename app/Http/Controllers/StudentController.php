@@ -89,7 +89,7 @@ class StudentController extends Controller
         $student = Student::find($request->student_id);
         if ($request->file('passport'))
         {
-            Storage::delete($student->passport);
+            Storage::disk('local')->delete('public/'.$student->passport);
             $passport = $request->file('passport')->store('public/uploads');
             $data['passport'] = str_replace('public/', '', $passport);
         }
