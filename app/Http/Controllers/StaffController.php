@@ -18,6 +18,7 @@ use App\Models\Term;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class StaffController extends Controller
 {
@@ -229,7 +230,7 @@ class StaffController extends Controller
         ]);
 
         $staff = $request->except('_token');
-        $passport = $request->file('passport')->store('uploads', 'public');
+        $passport = $request->file('passport')->store('public/uploads');
         
         $staff['passport'] = str_replace('public/', '', $passport);
         $staff['password'] = Hash::make($request->phone_number);
@@ -242,6 +243,64 @@ class StaffController extends Controller
 
         return back()->with('message', 'Staff created, login username is '. $staff_id. ' use phone number as password!');
 
+    }
+
+    public function viewStaff()
+    {
+        $staffs = Staff::all();
+        $staff = [];
+        if (request()->has('staff'))
+        {
+            $staff = Staff::find(request()->get('staff'));
+        }
+
+        return view('admin.view_staff', ['staffs' => $staffs, 'staff' => $staff]);
+    }
+
+    public function updateStaff(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone_number' => 'required|numeric',
+            'role' => 'required'
+        ]);
+
+        $data = $request->except('_token', 'staff_id');
+        $staff = Staff::find($request->staff_id);
+        if ($request->file('passport'))
+        {
+            Storage::disk('local')->delete('public/'.$staff->passport);
+            $passport = $request->file('passport')->store('public/uploads');
+            $data['passport'] = str_replace('public/', '', $passport);
+        }
+        Staff::unguard();
+        $staff->update($data);
+        Staff::reguard();
+
+        return back()->with('message', 'Staff Details has been updated!');
+    }
+
+    public function markAttendance()
+    {
+        $forms = Form::all();
+        $arms = [];
+        $form = [];
+        $arm = [];
+        $students = [];
+
+        if (request()->has('form'))
+        {
+            $form = Form::find(request()->get('form'));
+            $arms = Arm::all();
+        }
+
+        if (request()->has('form') && request('arm')) 
+        {
+            $arm = Arm::find(request()->get('arm'));
+            $students = Student::match(['form_id' => request()->get('form'), 'arm_id' => request()->get('arm')])->get();
+        }
+        return view('admin.mark_attendance', ['forms' => $forms, 'arms' => $arms, 'students' => $students, 'form' => $form, 'arm' => $arm]);
     }
 
     public function logout()

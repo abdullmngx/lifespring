@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArmController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GradeRemarkController;
@@ -86,7 +87,11 @@ Route::prefix('/staff')->group(function () {
         //staff ROutes
         Route::get('/staff/add', [StaffController::class, 'addStaff'])->name('staff.staff.add');
         Route::post('/staff/add', [StaffController::class, 'storeStaff'])->name('staff.staff.store');
+        Route::get('/staff/view', [StaffController::class, 'viewStaff'])->name('staff.staff.view');
         Route::post('/staff/update', [StaffController::class, 'updateStaff'])->name('staff.staff.update');
+        //Attendance Routes
+        Route::get('/attendance/mark', [StaffController::class, 'markAttendance'])->name('staff.attendance.mark');
+        Route::post('/attendance/mark', [AttendanceController::class, 'store'])->name('staff.attendance.store');
         //logout
         Route::get('/logout', [StaffController::class, 'logout'])->name('staff.logout');
     });

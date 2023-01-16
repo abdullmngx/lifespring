@@ -81,15 +81,15 @@
         </tr>
         <tr style="text-transform: uppercase">
             <td>term: {{ $meta['term'] }}</td>
-            <td>No of times sch. opened:</td>
+            <td>No of times sch. opened: {{ $student->present_count + $student->absent_count }}</td>
         </tr>
         <tr style="text-transform: uppercase">
             <td>class: {{ $student->form }}{{ $student->arm }} </td>
-            <td>no. of times present:</td>
+            <td>no. of times present: {{ $student->present_count }}</td>
         </tr>
         <tr style="text-transform: uppercase">
             <td>next term begins:</td>
-            <td>no. of times absent:</td>
+            <td>no. of times absent: {{ $student->absent_count }}</td>
         </tr>
     </table>
 

@@ -46,4 +46,24 @@ class Student extends Authenticatable
     {
         return Student::where('form_id', $this->form_id)->where('arm_id', $this->arm_id)->count();
     }
+
+    public function getAttendanceAttribute()
+    {
+        return Attendance::where('day', date('Y-m-d'))->where('student_id', $this->id)->first()?->status;
+    }
+
+    public function getPresentCountAttribute()
+    {
+        $current_session = Configuration::where('name', 'current_session')->first()->value;
+        $current_term = Configuration::where('name', 'current_term')->first()->value;
+        return Attendance::match(['session_id' => $current_session, 'term_id' => $current_term,'status' => 'present'])->where('student_id', $this->id)->count();
+    }
+
+    public function getAbsentCountAttribute()
+    {
+        $current_session = Configuration::where('name', 'current_session')->first()->value;
+        $current_term = Configuration::where('name', 'current_term')->first()->value;
+        return Attendance::match(['session_id' => $current_session, 'term_id' => $current_term,'status' => 'absent'])->where('student_id', $this->id)->count();
+    }
+
 }

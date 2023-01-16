@@ -77,23 +77,23 @@
     <table cellpadding="5">
         <tr style="text-transform: uppercase">
             <td>NAME: {{ $student->full_name }}</td>
-            <td>TOTAL IN CLASS:</td>
+            <td>TOTAL IN CLASS: {{$student->class_total}}</td>
         </tr>
         <tr style="text-transform: uppercase">
             <td>ADMISSION NUMber: {{ $student->admission_number }}</td>
-            <td>Overall total: {{ $student->results[0]->overall_score}}</td>
+            <td>Overall total: {{ $student->results[0]->overall_score}} </td>
         </tr>
         <tr style="text-transform: uppercase">
             <td>term: {{ $meta['term'] }}</td>
-            <td>No of times sch. opened:</td>
+            <td>No of times sch. opened: {{ $student->present_count + $student->absent_count }}</td>
         </tr>
         <tr style="text-transform: uppercase">
             <td>class: {{ $student->form }}{{ $student->arm }} </td>
-            <td>no. of times present:</td>
+            <td>no. of times present: {{ $student->present_count }}</td>
         </tr>
         <tr style="text-transform: uppercase">
             <td>next term begins:</td>
-            <td>no. of times absent:</td>
+            <td>no. of times absent: {{ $student->absent_count }}</td>
         </tr>
     </table>
 
