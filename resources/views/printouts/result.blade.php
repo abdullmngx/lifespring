@@ -55,16 +55,16 @@
                 </th>
             </tr>
         </table>
-        <table border="0" style="border: 0">
-            <tr style="border: 0">
-                <th style="border: 0" width="90%"><h4 style="text-transform: uppercase; margin: 1px;">Early Child Care Centre (ECCC), Primary & Secondary School, Minna</h4></th>
-                <th rowspan="3" width="10%" style="border: 0"><img src="./storage/{{ $student->passport }}" width="80" height="100" alt=""></th>
+        <table border="0" style="border: 0; text-align:center">
+            <tr style="border: 0; text-align:center">
+                <th style="border: 0; text-align:center" width="90%"><h4 style="text-transform: uppercase; margin: 1px;">Early Child Care Centre (ECCC), Primary & Secondary School, Minna</h4></th>
+                <th rowspan="3" width="10%" style="border: 0"><img src="/storage/{{ $student->passport }}" width="80" height="100" alt=""></th>
             </tr>
-            <tr style="border: 0">
-                <th style="border: 0" width="90%"><p>No. J2B Ibrahim Aliyu Road P.O. Box 3232 Dutsen-Kura Minna, Niger State</p></th>
+            <tr style="border: 0; text-align:center">
+                <th style="border: 0; text-align:center" width="90%"><p>No. J2B Ibrahim Aliyu Road P.O. Box 3232 Dutsen-Kura Minna, Niger State</p></th>
             </tr>
-            <tr style="border: 0">
-                <th style="border: 0" width="90%"><span style="background-color: purple; padding: 7px; color: white; border-radius: 25px; font-size: 18px; font-weight: bolder;">{{ strtoupper($student->section) }} END OF TERM REPORT</span></th>
+            <tr style="border: 0; text-align:center">
+                <th style="border: 0; text-align:center" width="90%"><span style="background-color: purple; padding: 7px; color: white; border-radius: 25px; font-size: 18px; font-weight: bolder;">{{ strtoupper($student->section) }} END OF TERM REPORT</span></th>
             </tr>
         </table>
     </div>
