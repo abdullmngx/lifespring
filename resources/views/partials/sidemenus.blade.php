@@ -8,6 +8,7 @@
       </div>
     </li>
     <li><a class="nav-link" href="/staff/dashboard"><i data-feather="home"></i><span>Dashboard</span></a></li>
+    @if(auth('staff')->user()->role == 'super_admin')
     <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>Admin Section</span></a>
       <ul class="nav-submenu menu-content">
         <li><a href="/staff/configurations">Configurations</a></li>
@@ -21,6 +22,8 @@
         <li><a href="/staff/class-subjects">Class Subjects</a></li>
       </ul>
     </li>
+    @endif
+    @if (auth('staff')->user()->role == 'super_admin' || auth('staff')->user()->role == 'class_teacher')
     <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="users"></i><span>Manage Students</span></a>
       <ul class="nav-submenu menu-content">
         <li><a href="/staff/students/add">Add Student</a></li>
@@ -28,18 +31,23 @@
         <li><a href="/staff/students/promote">Promotions</a></li>
       </ul>
     </li>
+    @endif
+    @if(auth('staff')->user()->role == 'super_admin')
     <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="users"></i><span>Manage Staff</span></a>
         <ul class="nav-submenu menu-content">
           <li><a href="/staff/staff/add">Add Staff</a></li>
           <li><a href="/staff/staff/view">View Staff</a></li>
         </ul>
     </li>
+    @endif
+    @if (auth('staff')->user()->role == 'super_admin' || auth('staff')->user()->role == 'class_teacher')
     <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="check-circle"></i><span>Attendance</span></a>
         <ul class="nav-submenu menu-content">
           <li><a href="/staff/attendance/mark">Mark Attendance</a></li>
           <li><a href="/staff/attendance/view">View Attendance</a></li>
         </ul>
     </li>
+    @endif
     <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="users"></i><span>Manage Results</span></a>
         <ul class="nav-submenu menu-content">
           <li><a href="/staff/result/upload">Input Result</a></li>
