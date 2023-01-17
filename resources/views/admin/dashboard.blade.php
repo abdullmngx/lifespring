@@ -60,15 +60,15 @@
             <div class="card-body">
                 <div class="mb-3 text-center"><h4>{{ $form->name }}</h4></div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4 text-center">
                         <h4>{{ $form->total_boys }}</h4>
                         <p>Boys</p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 text-center">
                         <h4>{{ $form->total_girls }}</h4>
                         <p>Girls</p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 text-center">
                         <h4>{{ $form->total_students }}</h4>
                         <p>Total</p>
                     </div>
