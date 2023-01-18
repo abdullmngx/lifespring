@@ -92,6 +92,7 @@ Route::prefix('/staff')->group(function () {
         //Attendance Routes
         Route::get('/attendance/mark', [StaffController::class, 'markAttendance'])->name('staff.attendance.mark');
         Route::post('/attendance/mark', [AttendanceController::class, 'store'])->name('staff.attendance.store');
+        Route::get('/attendance/view', [StaffController::class, 'viewAttendance'])->name('staff.attendance.view');
         //logout
         Route::get('/logout', [StaffController::class, 'logout'])->name('staff.logout');
     });

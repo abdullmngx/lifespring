@@ -66,4 +66,8 @@ class Student extends Authenticatable
         return Attendance::match(['session_id' => $current_session, 'term_id' => $current_term,'status' => 'absent'])->where('student_id', $this->id)->count();
     }
 
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 }

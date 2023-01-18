@@ -303,6 +303,30 @@ class StaffController extends Controller
         return view('admin.mark_attendance', ['forms' => $forms, 'arms' => $arms, 'students' => $students, 'form' => $form, 'arm' => $arm]);
     }
 
+    public function viewAttendance()
+    {
+        $forms = Form::all();
+        $arms = Arm::all();
+        $sessions = Session::all();
+        $terms = Term::all();
+        $students = [];
+        if (request()->has('form') && request()->has('arm') && request()->has('session') && request()->has('term'))
+        {
+            $form_id = request()->get('form');
+            $arm_id = request()->get('arm'); 
+            $session_id = request()->get('session');
+            $term_id = request()->get('term');
+            $students = Student::match(['form_id' => $form_id, 'arm_id' => $arm_id])->with(['attendances' => function ($q) use($form_id, $arm_id, $session_id, $term_id) {
+                $q->where('session_id', $session_id);
+                $q->where('term_id', $term_id);
+                $q->where('form_id', $form_id);
+                $q->where('arm_id', $arm_id);
+            }])->get();
+        }
+
+        return view('admin.view_attendance', ['forms' => $forms, 'arms' => $arms, 'sessions' => $sessions, 'terms' => $terms, 'students' => $students]);
+    }
+
     public function logout()
     {
         Auth::guard('staff')->logout();
