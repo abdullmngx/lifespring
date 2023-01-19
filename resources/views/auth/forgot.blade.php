@@ -21,7 +21,7 @@
         @endif
     </div>
     @if (session()->has('status'))
-      <div class="alert alert-success">{{ $status }}</div>
+      <div class="alert alert-success">{{ session('status') }}</div>
     @endif
     <div class="form-group">
       <button class="btn btn-primary btn-block" type="submit">Recover</button>

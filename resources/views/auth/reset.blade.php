@@ -11,7 +11,7 @@
         <h6>Reset Password</h6>
     </div>
     <div class="form-group">
-      <label>Password</label>
+      <label>New Password</label>
       <div class="input-group"><span class="input-group-text"><i class="icon-lock"></i></span>
         <input class="form-control" type="password" name="password" required="">
       </div>
@@ -29,7 +29,7 @@
           @endif
       </div>
     @if (session()->has('status'))
-      <div class="alert alert-success">{{ $status }}</div>
+      <div class="alert alert-success">{{ session()->get('status') }}</div>
     @endif
     <div class="form-group">
       <button class="btn btn-primary btn-block" type="submit">Reset</button>
