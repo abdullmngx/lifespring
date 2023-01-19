@@ -59,7 +59,15 @@ class ResultController extends Controller
             'term' => Term::find($request->term_id)?->name
         ];
 
-        $dompdf = Pdf::setOptions(['isRemoteEnabled' => true]);
+        $dompdf = Pdf::setOptions(['isRemoteEnabled' => true])->setHttpContext(
+            stream_context_create([
+                'ssl' => [
+                    'allow_self_signed'=> TRUE,
+                    'verify_peer' => FALSE,
+                    'verify_peer_name' => FALSE,
+                ]
+            ])
+        );
 
         if ($request->admission_number)
         {
