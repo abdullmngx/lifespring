@@ -95,7 +95,7 @@
                                                         $present[] = $att;
                                                     }
                                                     else {
-                                                        $absent = $att;
+                                                        $absent[] = $att;
                                                     }
                                                 }
                                             @endphp

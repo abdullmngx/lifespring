@@ -32,6 +32,10 @@ Route::get('/', function () {
 Route::prefix('/staff')->group(function () {
     Route::get('/login', [StaffController::class, 'login'])->name('staff.login');
     Route::post('/login', [StaffController::class, 'authenticate'])->name('staff.authenticate');
+    Route::get('/forgot', [StaffController::class, 'showForgot'])->middleware('guest')->name('password.request');
+    Route::post('/forgot', [StaffController::class, 'sendResetLink'])->middleware('guest')->name('password.email');
+    Route::get('/reset/{token}', [StaffController::class, 'showReset'])->middleware('guest')->name('password.reset');
+    Route::post('/reset', [StaffController::class, 'reset'])->middleware('guest')->name('password.update');
 
     Route::group(['middleware' => 'auth.staff'], function () {
         Route::get('/dashboard', [StaffController::class, 'dashboard'])->name('staff.dashboard');
