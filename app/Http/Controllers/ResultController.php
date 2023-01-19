@@ -59,6 +59,8 @@ class ResultController extends Controller
             'term' => Term::find($request->term_id)?->name
         ];
 
+        $dompdf = Pdf::setOptions(['isRemoteEnabled' => true]);
+
         if ($request->admission_number)
         {
             $student = Student::match($request->only('section_id', 'form_id', 'arm_id', 'admission_number'))->with(['results' => function ($query) use ($request) {
@@ -67,7 +69,7 @@ class ResultController extends Controller
                 $query->where('form_id', $request->form_id);
                 $query->where('arm_id', $request->arm_id);
             }])->first();
-            $pdf = Pdf::loadView('printouts.result', ['student' => $student, 'meta' => $meta]);
+            $pdf = $dompdf->loadView('printouts.result', ['student' => $student, 'meta' => $meta]);
             return $pdf->download('result.pdf');
         }
 
@@ -77,7 +79,7 @@ class ResultController extends Controller
             $query->where('form_id', $request->form_id);
             $query->where('arm_id', $request->arm_id);
         }])->get();
-        $pdf = Pdf::loadView('printouts.result_all', ['students' => $students, 'meta' => $meta]);
+        $pdf = $dompdf->loadView('printouts.result_all', ['students' => $students, 'meta' => $meta]);
         return $pdf->download('class_result.pdf');
     }
 }
