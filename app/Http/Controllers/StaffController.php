@@ -27,6 +27,10 @@ class StaffController extends Controller
 {
     public function login()
     {
+        if (auth::guard('staff')->check())
+        {
+            return redirect()->intended('/staff/dashboard');
+        }
         return view('auth.login');
     }
 
