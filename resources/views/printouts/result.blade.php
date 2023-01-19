@@ -48,7 +48,7 @@
         <table class="borderless" border="0" style="border: 0">
             <tr style="border: 0">
                 <th width="10%" style="border: 0">
-                    <img src="./logo.jpg" width="110" alt="logo">
+                    <img src="{{ url('/logo.jpg') }}" width="110" alt="logo">
                 </th>
                 <th style="border: 0" width="90%">
                     <span style="text-transform: uppercase; font-size: 80px; margin: 0px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"><span style="color: orangered">L</span><span style="color: blue">I</span><span style="color: orange">F</span><span>E</span> <span style="color: limegreen">S</span><span style="color: orange">P</span><span style="color: purple">R</span><span style="color: aqua">I</span><span style="color: violet">N</span><span>G</span></span>
