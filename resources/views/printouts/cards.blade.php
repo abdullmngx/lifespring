@@ -84,9 +84,6 @@
   <footer style="margin-top:40px;">
     <p class="foot text-center" style="color: orange;"><i>...Brain & Mind Development</i></p>
   </footer>
-  @if ($loop->iteration == 10)
-  <div class="page-break"></div>
-  @endif
 @endforeach
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
