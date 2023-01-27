@@ -51,8 +51,8 @@
       <div class="page-main-header">
         <div class="main-header-right row m-0">
           <div class="main-header-left">
-            <div class="logo-wrapper"><a href="/staff/dashboard"><img class="img-fluid" width="40" src="/logo.png" alt=""> <span class="text-info">Life<span class="text-warning">Spring</span></span></a></div>
-            <div class="dark-logo-wrapper"><a href="/staff/dashboard"><img class="img-fluid" width="40" src="/logo.png" alt=""> <span class="text-info">Life<span class="text-warning">Spring</span></span></a></div>
+            <div class="logo-wrapper"><a href="/student/dashboard"><img class="img-fluid" width="40" src="/logo.png" alt=""> <span class="text-info">Life<span class="text-warning">Spring</span></span></a></div>
+            <div class="dark-logo-wrapper"><a href="/student/dashboard"><img class="img-fluid" width="40" src="/logo.png" alt=""> <span class="text-info">Life<span class="text-warning">Spring</span></span></a></div>
             <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle"></i></div>
           </div>
           <div class="left-menu-header col">
@@ -69,7 +69,7 @@
                 <div class="mode"><i class="fa fa-moon-o dark-toggle"></i></div>
               </li>
               <li class="onhover-dropdown p-0">
-                <button class="btn btn-primary-light" type="button"><a href="/staff/logout"><i data-feather="log-out"></i>Log out</a></button>
+                <button class="btn btn-primary-light" type="button"><a href="/student/logout"><i data-feather="log-out"></i>Log out</a></button>
               </li>
             </ul>
           </div>
@@ -81,16 +81,16 @@
       <div class="page-body-wrapper horizontal-menu">
         <!-- Page Sidebar Start-->
         <header class="main-nav">
-          <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="/storage/{{ auth('staff')->user()->passport }}" alt="">
+          <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="/storage/{{ auth('student')->user()->passport }}" alt="">
             <div class="badge-bottom"></div><a href="#">
-              <h6 class="mt-3 f-14 f-w-600">{{ ucwords(str_replace('_', ' ', auth('staff')->user()->role)) }}</h6></a>
-            <p class="mb-0 font-roboto">{{ auth('staff')->user()->name }}</p>
+              <h6 class="mt-3 f-14 f-w-600">Student</h6></a>
+            <p class="mb-0 font-roboto">{{ auth('student')->user()->full_name }}</p>
           </div>
           <nav>
             <div class="main-navbar">
               <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
               <div id="mainnav">           
-                @include('partials.sidemenus')
+                @include('partials.ssidemenus')
               </div>
               <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
             </div>
@@ -105,7 +105,7 @@
                   <h3>@yield('title')</h3>
                   @if (!request()->routeIs('staff.dashboard'))
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/staff/dashboard">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/student/dashboard">Home</a></li>
                     @yield('breadcrumb-main')
                     <li class="breadcrumb-item active">@yield('title')</li>
                   </ol>

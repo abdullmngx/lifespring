@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('configurations', function (Blueprint $table) {
+        Schema::create('cards', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('value');
-            $table->string('model')->nullable();
-            $table->string('seed')->nullable();
-            $table->string('field_type');
+            $table->string('pin');
+            $table->string('serial');
+            $table->enum('status', ['used', 'using', 'unused'])->default('unused');
+            $table->integer('usage');
+            $table->unsignedBigInteger('used_by')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('configurations');
+        Schema::dropIfExists('cards');
     }
 };

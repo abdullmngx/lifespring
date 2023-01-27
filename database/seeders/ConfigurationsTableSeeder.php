@@ -19,11 +19,19 @@ class ConfigurationsTableSeeder extends Seeder
             [
                 'name' => 'current_session',
                 'value' => 3,
+                'model' => 'App\Models\Session',
                 'field_type' => 'select'
             ],
             [
                 'name' => 'current_term',
                 'value' => 1,
+                'model' => 'App\Models\Term',
+                'field_type' => 'select'
+            ],
+            [
+                'name' => 'result_view',
+                'value' => 'free',
+                'seed' => 'card,free,school-fee',
                 'field_type' => 'select'
             ]
         ]);

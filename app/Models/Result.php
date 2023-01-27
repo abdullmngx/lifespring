@@ -62,4 +62,21 @@ class Result extends Model
     {
         return Remark::where('min_score', '<=', $this->getAttribute('overall_score'))->where('max_score', '>=', $this->getAttribute('overall_score'))->first()->managers_remark;
     }
+
+    public function getFormAttribute()
+    {
+        return Form::find($this->form_id)?->name;
+    }
+    public function getArmAttribute()
+    {
+        return Arm::find($this->arm_id)?->name;
+    }
+    public function getSessionAttribute()
+    {
+        return Session::find($this->session_id)?->name;
+    }
+    public function getTermAttribute()
+    {
+        return Term::find($this->term_id)?->name;
+    }
 }

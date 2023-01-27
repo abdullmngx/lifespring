@@ -44,7 +44,7 @@
                                                             @case('select')
                                                                 <select name="values[]" class="form-control">
                                                                     @foreach ($config->data as $data)
-                                                                        <option value="{{ $data->id }}" {{ $config->value == $data->id ? 'selected' : '' }}>{{ $data->name }}</option>
+                                                                        <option value="{{ $data['id'] }}" {{ $config['value'] == $data['id'] ? 'selected' : '' }}>{{ $data['name'] }}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 @break

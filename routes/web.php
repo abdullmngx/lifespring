@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArmController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\CardController;
 use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GradeRemarkController;
@@ -97,11 +98,26 @@ Route::prefix('/staff')->group(function () {
         Route::get('/attendance/mark', [StaffController::class, 'markAttendance'])->name('staff.attendance.mark');
         Route::post('/attendance/mark', [AttendanceController::class, 'store'])->name('staff.attendance.store');
         Route::get('/attendance/view', [StaffController::class, 'viewAttendance'])->name('staff.attendance.view');
+
+        // card routes
+        Route::get('/cards', [StaffController::class, 'cards'])->name('staff.cards');
+        Route::post('/cards', [CardController::class, 'store'])->name('saff.card.store');
+        Route::get('/cards/clear-used', [CardController::class, 'destroy'])->name('staff.card.destroy');
+        Route::post('/cards/print', [CardController::class, 'print'])->name('staff.card.print');
         //logout
         Route::get('/logout', [StaffController::class, 'logout'])->name('staff.logout');
     });
 });
 
-Route::get('/forgot', function () {
-    return view('auth.forgot');
+Route::prefix('student')->group(function () {
+    Route::get('/login', [StudentController::class, 'showLogin'])->name('student.login');
+    Route::post('/login', [StudentCOntroller::class, 'authenticate'])->name('student.authenticate');
+
+    Route::middleware(['auth.student'])->group(function () {
+        Route::get('dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard');
+        Route::get('/result', [StudentController::class, 'result'])->name('student.result');
+        Route::post('/result', [StudentController::class, 'printResult'])->name('student.print_result');
+        //logout 
+        Route::get('logout', [StudentController::class, 'logout'])->name('student.logout');
+    });
 });

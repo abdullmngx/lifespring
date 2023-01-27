@@ -17,9 +17,9 @@ class Configuration extends Model
         {
             return $this->model::all();
         }
-        elseif(!is_null($this->seeds))
+        elseif(!is_null($this->seed))
         {
-            $array = explode(',', $this->seeds);
+            $array = explode(',', $this->seed);
             foreach ($array as $index => &$value)
             {
                 $array[$index] = ['id' => $value, 'name' => $value];

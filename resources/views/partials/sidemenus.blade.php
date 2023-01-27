@@ -20,6 +20,7 @@
         <li><a href="/staff/grade-remarks">Grade Remarks</a></li>
         <li><a href="/staff/remarks">General Remarks</a></li>
         <li><a href="/staff/class-subjects">Class Subjects</a></li>
+        <li><a href="/staff/cards">Cards</a></li>
       </ul>
     </li>
     @endif

@@ -77,7 +77,7 @@
         </tr>
         <tr style="text-transform: uppercase">
             <td>ADMISSION NUMber: {{ $student->admission_number }}</td>
-            <td>Overall total: {{ $student->results[0]->overall_score}} </td>
+            <td>Overall total: {{ $student->results->first()?->overall_score}} </td>
         </tr>
         <tr style="text-transform: uppercase">
             <td>term: {{ $meta['term'] }}</td>
@@ -134,7 +134,7 @@
   <footer style="margin-top:40px;">
     <table class="borderless" style="margin-bottom: 20px;" cellpadding="5">
         <tr>
-            <td colspan="2">Teacher's Remark: <span style="">{{ $student->results[0]?->teachers_remark }}</span></td>
+            <td colspan="2">Teacher's Remark: <span style="">{{ $student->results->first()?->teachers_remark }}</span></td>
         </tr>
         <tr>
             <td>Sign:</td>
@@ -143,7 +143,7 @@
     </table>
     <table class="borderless" cellpadding="5">
         <tr>
-            <td colspan="2">Center Manager's Remark: <span style="">{{ $student->results[0]?->managers_remark }}</span></td>
+            <td colspan="2">Center Manager's Remark: <span style="">{{ $student->results->first()?->managers_remark }}</span></td>
         </tr>
         <tr>
             <td>Sign:</td>

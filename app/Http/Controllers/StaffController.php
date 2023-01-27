@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Arm;
+use App\Models\Card;
 use App\Models\ClassSubject;
 use App\Models\Configuration;
 use App\Models\Form;
@@ -38,7 +39,6 @@ class StaffController extends Controller
     {
         $request->validate([
             'username' => 'required',
-            'password' => 'required',
         ]);
 
         $staff = Staff::where('staff_id', $request->username)->orWhere('email', $request->username)->first();
@@ -414,5 +414,11 @@ class StaffController extends Controller
             'girls' => $girls
         ];
         return response($chart, 200);
+    }
+
+    public function cards()
+    {
+        $cards = Card::where('status', 'unused')->get();
+        return view('admin.cards', ['cards' => $cards]);
     }
 }
