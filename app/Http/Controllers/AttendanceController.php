@@ -23,7 +23,7 @@ class AttendanceController extends Controller
         for ($i=0; $i<$count; $i++)
         {
             $status = $request['status'.$students[$i]];
-            Attendance::updateOrCreate(['session_id' => $current_session, 'term_id' => $current_term, 'form_id' => $form_id, 'arm_id' => $arm_id, 'student_id' => $students[$i]], ['session_id' => $current_session, 'term_id' => $current_term, 'form_id' => $form_id, 'arm_id' => $arm_id, 'student_id' => $students[$i],'status' => $status, 'day' => $date]);
+            Attendance::updateOrCreate(['session_id' => $current_session, 'term_id' => $current_term, 'form_id' => $form_id, 'arm_id' => $arm_id, 'student_id' => $students[$i], 'day' => $date], ['session_id' => $current_session, 'term_id' => $current_term, 'form_id' => $form_id, 'arm_id' => $arm_id, 'student_id' => $students[$i],'status' => $status, 'day' => $date]);
         }
         return back()->with('message', 'Attendance saved');
     }
