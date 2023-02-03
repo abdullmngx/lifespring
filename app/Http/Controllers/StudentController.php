@@ -175,11 +175,23 @@ class StudentController extends Controller
             ]);
             $pin = $request->pin;
             $serial = $request->serial;
-
-            if (!Card::where('pin', $pin)->where('serial', $serial)->where('status', '!=', 'used')->exists())
+            $card = Card::where('pin', $pin)->where('serial', $serial)->first();
+            if (!$card || $card->status == 'used' || $card->usage == $card->max_use)
             {
                 return back()->withErrors(['pin' => 'Invalid pin provided']);
             }
+            $usage = $card->usage + 1;
+            if ($usage < $card->max_use)
+            {
+                $status = 'using';
+            }else
+            {
+                $status = 'used';
+            }
+            $card->update([
+                'usage' => $usage,
+                'status' => $status
+            ]);
         }
         $pdf = $dompdf->loadView('printouts.result', ['student' => $student, 'meta' => $meta]);
         return $pdf->stream('result.pdf');

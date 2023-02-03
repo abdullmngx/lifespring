@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Card;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
-use Nette\Utils\Random;
 
 class CardController extends Controller
 {
@@ -41,17 +40,13 @@ class CardController extends Controller
     protected function randUniq($length)
     {
         $add = strtotime(date("Ymdhis"));
-        $serial = "Z1wsfjbvnZdjGADKMFEKsakl268049$add";
         $pin = "1234567890$add";
         $str = '';
         $max_str = strlen($pin) - 1;
-        $string = '';
-        $max = strlen($serial) - 1;
         for ($a = 0; $a < $length; $a++) {
             $str .= $pin[mt_rand(0, $max_str)];
         }
-        $pin = $str;
-        return $pin;
+        return $str;
     }
 
     public function destroy()

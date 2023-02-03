@@ -87,38 +87,43 @@
                                     @csrf
                                     <input type="hidden" name="form_id" value="{{ request()->get('form') }}">
                                     <input type="hidden" name="arm_id" value="{{ request()->get('arm') }}">
-                                <table class="table table-hover table-striped data-table">
-                                    <thead>
-                                        <tr>
-                                            <th class="bg-primary">S/No.</th>
-                                            <th class="w-25 bg-danger">Admission Number</th>
-                                            <th class="w-50 bg-success">Student</th>
-                                            <th class="w-25 bg-dark">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($students as $student)
+                                    <div class="mb-4">
+                                        <input type="date" name="date" id="date" class="form-control">
+                                    </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped data-table">
+                                        <thead>
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $student->admission_number }}</td>
-                                                <td>{{ $student->full_name }}</td>
-                                                <td>
-                                                    <div class="m-checkbox-inline custom-radio-ml">
-                                                        <div class="radio radio-success">
-                                                            <input type="hidden" name="student_ids[]" value="{{ $student->id }}">
-                                                            <input id="present{{ $student->id }}" type="radio" name="status{{ $student->id }}" value="present" {{ $student->attendance == "present" ? 'checked' : '' }} {{ $student->attendance == "" ? 'checked' : '' }}>
-                                                            <label class="mb-0" for="present{{ $student->id }}">Present</label>
-                                                        </div>
-                                                        <div class="radio radio-danger">
-                                                            <input id="absent{{ $student->id }}" type="radio" name="status{{ $student->id }}" value="absent" {{ $student->attendance == "absent" ? 'checked' : '' }}>
-                                                            <label class="mb-0" for="absent{{ $student->id }}">Absent</label>
-                                                        </div>
-                                                    </div>
-                                                </td>
+                                                <th class="bg-primary">S/No.</th>
+                                                <th class="w-25 bg-danger">Admission Number</th>
+                                                <th class="w-50 bg-success">Student</th>
+                                                <th class="w-25 bg-dark">Status</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($students as $student)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $student->admission_number }}</td>
+                                                    <td>{{ $student->full_name }}</td>
+                                                    <td>
+                                                        <div class="m-checkbox-inline custom-radio-ml">
+                                                            <div class="radio radio-success">
+                                                                <input type="hidden" name="student_ids[]" value="{{ $student->id }}">
+                                                                <input id="present{{ $student->id }}" type="radio" name="status{{ $student->id }}" value="present" {{ $student->attendance == "present" ? 'checked' : '' }} {{ $student->attendance == "" ? 'checked' : '' }}>
+                                                                <label class="mb-0" for="present{{ $student->id }}">Present</label>
+                                                            </div>
+                                                            <div class="radio radio-danger">
+                                                                <input id="absent{{ $student->id }}" type="radio" name="status{{ $student->id }}" value="absent" {{ $student->attendance == "absent" ? 'checked' : '' }}>
+                                                                <label class="mb-0" for="absent{{ $student->id }}">Absent</label>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                                 <div class="mb-4">
                                     <button type="submit" class="btn btn-primary">
                                         Submit
